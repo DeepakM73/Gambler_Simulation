@@ -1,5 +1,7 @@
 package com.bridgelabz.gambler;
 
+import java.util.Scanner;
+
 public class Gambler {
 
     public static final int INITIAL_STAKE = 100;
@@ -70,6 +72,7 @@ public class Gambler {
         return profitOrloss;
     }
 
+
     public static void luckyUnluckyDay() {
 
         int max = 0;
@@ -100,10 +103,31 @@ public class Gambler {
                 + "Loss on unluckiest day: " + min);
     }
 
+    public static void continuation() {
+
+        boolean playAgain = true;
+
+        while (playAgain) {
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Play Again y/n");
+            char ans = sc.next().charAt(0);
+            if (ans == 'y') {
+                System.out.println("Profit or loss after a month(30 days): " + stakeAfterMonth());
+                luckyUnluckyDay();
+            } else if (ans == 'n') {
+                break;
+            } else {
+                System.out.println("Please enter y or n");
+                continue;
+            }
+        }
+    }
+
     public static void main(String[] args) {
         System.out.println("Welcome to Gambling Problem");
 
         System.out.println("Profit or loss after a month(30 days): " + stakeAfterMonth());
         luckyUnluckyDay();
+        continuation();
     }
 }
